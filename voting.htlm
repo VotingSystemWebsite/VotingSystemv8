@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=VECB953RBN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VECB953RBN');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Free Online Voting System – No Login Required | VotingSystem by Aren Group</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+  <meta name="google-site-verification" content="bNX1B61g3y4T9ymJ6H2qimq24khS_OwGlTKqgl3mH8Q" />
+  <meta name="description" content="VotingSystem is a free online poll and voting platform. Create polls instantly, share them, and view results in real time — no login or signup required. Perfect for schools, events, and teams.">
+  <meta name="keywords" content="free online voting, no login poll maker, anonymous voting, create poll, free poll site, voting system, Aren Nersesyan, online poll, poll without signup, instant results, share votes, quick poll, voting platform, Aren Group">
+  <meta name="author" content="Aren Nersesyan">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="VotingSystem – Free Online Voting Platform | No Login Required">
+  <meta property="og:description" content="Create free polls instantly and share them. No login needed, real-time results, easy and secure.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://votingsystem-nu.vercel.app/">
+
+  <!-- ✅ Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "VotingSystem",
+    "url": "https://votingsystem-nu.vercel.app/",
+    "description": "Free online poll and voting system with no login required. Create and share polls instantly with real-time results.",
+    "applicationCategory": "Utility",
+    "operatingSystem": "All",
+    "author": {
+      "@type": "Organization",
+      "name": "Aren Group",
+      "url": "https://votingsystem-nu.vercel.app/about_us.html"
+    },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+
+  <!-- Preload critical resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.gstatic.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #3DDC84;
+      --primary-dark: #34C275;
+      --background: #FFFFFF;
+      --foreground: #202124;
+      --muted-foreground: #5F6368;
+      --border: #DADCE0;
+      --muted: #F8F9FA;
+      --destructive: #EA4335;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      margin: 0;
+      padding: 0;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .slide-up {
+      animation: slideUp 0.3s ease-out;
+    }
+
+    .scale-in {
+      animation: scaleIn 0.3s ease-out;
+    }
+
+    .pulse-glow {
+      animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(61, 220, 132, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0); }
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+      background-color: var(--background);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .option-item {
+      transition: all 0.15s ease;
+    }
+
+    .option-item:hover {
+      background-color: rgba(61, 220, 132, 0.05);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .qr-code-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .winner-badge {
+      background-color: var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .ended-badge {
+      background-color: #6B7280;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .success-message {
+      background-color: #D1FAE5;
+      border: 1px solid #34D399;
+      color: #065F46;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 0.875rem;
+    }
+
+    /* SEO Content Styling */
+    .seo-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      line-height: 1.7;
+      color: #4B5563;
+    }
+
+    .seo-content h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .seo-content p {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Fix for background and scrolling */
+    #app {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      min-height: 100vh;
+    }
+
+    /* Ensure screens fit properly */
+    .screen-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* Performance optimizations */
+    .will-change {
+      will-change: transform, opacity;
+    }
+
+    /* Footer with same green as top */
+    .footer-green {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    }
+  </style>
+</head>
+<body>
+  <!-- Hidden SEO Content for Search Engines -->
+  <div class="seo-content hidden md:block">
+    <h1>VotingSystem – Free Online Voting Platform</h1>
+    <p>
+      Welcome to VotingSystem, the ultimate free online voting platform designed to let you create, share, and manage polls effortlessly. With VotingSystem, you can generate sharable votes, conduct anonymous voting, and collect real-time results securely, all without requiring any login or registration. Whether you're hosting classroom polls, club elections, quick surveys, or community votes, our platform ensures fast, reliable, and easy-to-use online voting. Enjoy instant voting results, real-time analytics, and full control over your elections with VotingSystem's secure and cross-platform interface. Create unlimited free polls, manage voter participation, track votes in real time, and share your polls with anyone via direct links or QR codes. Designed for simplicity and speed, VotingSystem supports anonymous polling, group voting, instant results visualization, and interactive vote management. Perfect for teachers, event organizers, clubs, or online communities, it's a versatile tool for both casual and professional elections. Take advantage of our free plan to conduct multiple polls monthly, with detailed voting analytics and secure vote tracking. With VotingSystem, experience a modern online voting system that prioritizes privacy, accessibility, and ease of use. Engage your audience, streamline your elections, and empower voters to participate seamlessly in every poll. Discover the best way to create online votes, manage polls, track results, and share elections effortlessly. VotingSystem is your go-to solution for free, secure, no-login polls, online voting, anonymous surveys, interactive elections, real-time results, sharable votes, and hassle-free vote management, making your online voting experience smooth, efficient, and reliable.
+    </p>
+  </div>
+
+  <div id="app">
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="hidden fixed inset-0 bg-white bg-opacity-80 flex items-center justify-center z-50">
+      <div class="bg-white p-6 rounded-lg shadow-lg flex items-center">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600 mr-3"></div>
+        <span>Loading...</span>
+      </div>
+    </div>
+
+    <!-- Enhanced Welcome Screen -->
+    <div id="welcome-screen" class="screen-container">
+      <div class="main-content">
+        <div class="flex flex-col items-center justify-center w-full px-4 py-12">
+          <div class="text-center mb-12 slide-up">
+            <div class="mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto">
+                <path d="M9 12l2 2 4-4"></path>
+                <path d="M5 7a2 2 0 012-2h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V7z"></path>
+              </svg>
+            </div>
+            <h1 class="text-5xl font-bold text-gray-800 mb-4">VotingSystem</h1>
+            <p class="text-xl text-gray-600 max-w-md mx-auto">Create and share votes with anyone!</p>
+          </div>
+
+          <div class="card p-8 max-w-md w-full scale-in">
+            <div class="text-center mb-8">
+              <h2 class="text-2xl font-semibold text-gray-800 mb-2">Welcome to VotingSystem</h2>
+              <p class="text-gray-600">Create your first shareable vote in seconds</p>
+            </div>
+
+            <button id="create-vote-btn" class="w-full btn-primary py-4 px-6 rounded-lg font-medium text-lg pulse-glow">
+              Create New Vote
+            </button>
+
+            <button id="view-results-btn" class="w-full mt-4 py-3 px-6 border border-green-500 text-green-600 rounded-lg font-medium hover:bg-green-50 transition-colors">
+              View My Votes
+            </button>
+
+            <div class="mt-3 text-center text-gray-500">
+              <p>Shareable • Secure • Cross-Platform • No Login • Free • Unlimited</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="text-center py-6 border-t mt-12 text-gray-600 footer-green">
+        <p>
+          © 2025 · Made by
+          <a href="about_us.html" class="text-green-600 hover:underline">Aren Group</a> · All rights reserved · For Educational Article and FAQ website please find the links on google.
+
+        <div class="flex justify-center gap-6 mt-3">
+          <a href="https://github.com/SitesAndMore-hue/VotingSystemv8/" target="_blank" aria-label="GitHub" class="hover:scale-110 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.744.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.304.762-1.604-2.665-.3-5.467-1.334-5.467-5.931 0-1.31.467-2.381 1.236-3.221-.123-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.29-1.552 3.296-1.23 3.296-1.23.655 1.653.242 2.873.12 3.176.77.84 1.235 1.911 1.235 3.221 0 4.61-2.807 5.628-5.48 5.922.43.372.823 1.102.823 2.222 0 1.604-.015 2.896-.015 3.286 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+          </a>
+
+          <a href="https://www.producthunt.com/products/votingsystem" target="_blank" aria-label="Product Hunt" class="hover:scale-110 transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111581.png" alt="Product Hunt" class="w-6 h-6">
+          </a>
+
+          <a href="https://medium.com/@techandmemes/how-to-build-a-simple-online-voting-system-or-poll-100dc85a0044" target="_blank" aria-label="Medium" class="hover:scale-110 transition">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968906.png" alt="Medium" class="w-6 h-6">
+          </a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Create Vote Form -->
+    <div id="create-vote-form" class="screen-container hidden">
+      <div class="main-content">
+        <div class="w-full px-4 py-12">
+          <div class="max-w-2xl mx-auto card p-8 slide-up">
+            <div class="flex items-center mb-6">
+              <button id="back-to-welcome" class="mr-4 text-gray-600 hover:text-gray-800 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 12H5"></path>
+                  <path d="M12 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+              <h2 class="text-2xl font-bold text-gray-800">Create a New Vote</h2>
+            </div>
+
+            <div class="mb-6">
+              <label class="block text-gray-700 font-medium mb-2" for="vote-title">Vote Title</label>
+              <input type="text" id="vote-title" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Enter vote title">
+            </div>
+
+            <div class="mb-6">
+              <label class="block text-gray-700 font-medium mb-2" for="vote-description">Description</label>
+              <textarea id="vote-description" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" rows="3" placeholder="Enter vote description"></textarea>
+            </div>
+
+            <div class="mb-6">
+              <label class="block text-gray-700 font-medium mb-2">Options</label>
+              <div id="options-container" class="space-y-3">
+                <div class="flex items-center">
+                  <input type="text" class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Option 1">
+                  <button class="ml-2 text-red-500 hover:text-red-700 remove-option hidden transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 6h18"></path>
+                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                    </svg>
+                  </button>
+                </div>
+                <div class="flex items-center">
+                  <input type="text" class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Option 2">
+                  <button class="ml-2 text-red-500 hover:text-red-700 remove-option hidden transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 6h18"></path>
+                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <button id="add-option" class="mt-3 text-green-600 hover:text-green-800 flex items-center transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5v14"></path>
+                </svg>
+                Add another option
+              </button>
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-lg font-medium text-gray-800 mb-3">Security Options</h3>
+              <div class="space-y-4">
+                <label class="flex items-center">
+                  <input type="checkbox" id="require-name" class="mr-3 rounded border-gray-300 text-green-600 focus:ring-green-500">
+                  <span class="text-gray-700">Require voter's name</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="flex space-x-4">
+              <button id="back-to-welcome-2" class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
+                Back
+              </button>
+              <button id="create-vote" class="flex-1 btn-primary py-3 px-4 rounded-lg font-medium">
+                Create Vote
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vote Created Screen -->
+    <div id="vote-created" class="screen-container hidden">
+      <div class="main-content">
+        <div class="w-full px-4 py-12">
+          <div class="max-w-2xl mx-auto card p-8 text-center scale-in">
+            <div class="mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Vote Created Successfully!</h2>
+            <p class="text-gray-600 mb-6">Share this link with your voters:</p>
+
+            <div class="mb-8">
+              <div class="flex items-center bg-gray-100 p-3 rounded-lg mb-3">
+                <input type="text" id="vote-link" class="flex-1 bg-transparent border-none outline-none text-gray-800" readonly>
+                <button id="copy-link" class="text-green-600 hover:text-green-800 ml-2 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                  </svg>
+                </button>
+              </div>
+              <p id="copy-message" class="text-sm text-green-600 hidden">Link copied to clipboard!</p>
+            </div>
+
+            <!-- QR Code Section -->
+            <div class="mb-8">
+              <p class="text-gray-600 mb-4">Or scan this QR code:</p>
+              <div id="qrcode" class="qr-code-container"></div>
+            </div>
+
+            <button id="go-back-home" class="btn-primary py-3 px-6 rounded-lg font-medium">
+              Go Back Home
+            </button>
+
+            <p class="text-gray-600 mt-4 text-sm">You can check the results of this vote in "View My Votes".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Voting Screen -->
+    <div id="voting-screen" class="screen-container hidden">
+      <div class="main-content">
+        <div class="w-full px-4 py-12">
+          <div class="max-w-2xl mx-auto card p-8 slide-up">
+            <div class="flex items-center justify-between mb-2">
+              <h2 id="voting-title" class="text-2xl font-bold text-gray-800">Vote Title</h2>
+              <div id="election-ended-badge" class="ended-badge hidden">Election Ended</div>
+            </div>
+            <p id="voting-description" class="text-gray-600 mb-6">Vote description goes here</p>
+
+            <div id="already-voted-message" class="hidden mb-6 p-4 bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg">
+              <p>You have already voted in this election.</p>
+            </div>
+
+            <div id="election-ended-message" class="hidden mb-6 p-4 bg-red-100 border border-red-400 text-red-800 rounded-lg">
+              <p>This election has ended. Voting is no longer allowed.</p>
+            </div>
+
+            <div id="security-fields" class="mb-6 space-y-4 hidden">
+              <div id="name-field" class="hidden">
+                <label class="block text-gray-700 font-medium mb-2" for="voter-name">Your Name</label>
+                <input type="text" id="voter-name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Enter your name">
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <h3 class="text-lg font-medium text-gray-800 mb-3">Options</h3>
+              <div id="voting-options" class="space-y-3">
+                <!-- Options will be populated here -->
+              </div>
+            </div>
+
+            <button id="submit-vote" class="w-full btn-primary py-3 px-4 rounded-lg font-medium">
+              Submit Vote
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vote Submitted Screen - SIMPLIFIED -->
+    <div id="vote-submitted" class="screen-container hidden">
+      <div class="main-content">
+        <div class="w-full px-4 py-12">
+          <div class="max-w-2xl mx-auto card p-8 text-center scale-in">
+            <div class="mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#3DDC84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Thanks for Voting!</h2>
+            <p class="text-gray-600 mb-8">Your vote has been successfully submitted.</p>
+
+            <button id="create-own-election" class="w-full btn-primary py-3 px-4 rounded-lg font-medium">
+              Create Your Own Election
+            </button>
+
+            <div class="mt-8 pt-6 border-t border-gray-200">
+              <p class="text-gray-500 text-sm">Created by VotingSystem</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen-container hidden">
+      <div class="main-content">
+        <div class="w-full px-4 py-12">
+          <div class="max-w-4xl mx-auto card p-8 slide-up">
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center">
+                <button id="back-to-welcome-from-results" class="mr-4 text-gray-600 hover:text-gray-800 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5"></path>
+                    <path d="M12 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+                <h2 class="text-2xl font-bold text-gray-800">My Created Votes</h2>
+              </div>
+              <div class="flex space-x-2">
+                <button id="remove-vote-btn" class="text-red-600 hover:text-red-800 flex items-center transition-colors hidden">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                    <path d="M3 6h18"></path>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                  </svg>
+                  Remove Vote
+                </button>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <label class="block text-gray-700 font-medium mb-2" for="vote-select">Select Vote</label>
+              <select id="vote-select" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                <option value="">Choose a vote...</option>
+              </select>
+            </div>
+
+            <div id="no-votes-message" class="text-center py-12 hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4">
+                <path d="M9 12l2 2 4-4"></path>
+                <path d="M5 7a2 2 0 012-2h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V7z"></path>
+              </svg>
+              <h3 class="text-xl font-semibold text-gray-600 mb-2">No Votes Created Yet</h3>
+              <p class="text-gray-500">Create your first vote to get started!</p>
+              <button id="create-first-vote" class="mt-4 btn-primary py-2 px-6 rounded-lg">
+                Create Your First Vote
+              </button>
+            </div>
+
+            <div id="results-content" class="hidden">
+              <div class="flex justify-between items-center mb-6">
+                <div>
+                  <h3 id="results-title" class="text-xl font-bold text-gray-800"></h3>
+                  <p id="results-description" class="text-gray-600"></p>
+                </div>
+                <div id="vote-stats" class="text-right">
+                  <p class="text-gray-700"><span id="total-voters" class="font-semibold">0</span> voters</p>
+                  <p id="winner-info" class="text-green-600 font-semibold"></p>
+                  <p id="election-status" class="text-sm mt-1"></p>
+                </div>
+              </div>
+
+              <div class="mb-8">
+                <h4 class="text-lg font-medium text-gray-800 mb-4">Results Chart</h4>
+                <div class="h-64">
+                  <canvas id="results-chart"></canvas>
+                </div>
+              </div>
+
+              <div class="mb-6">
+                <h4 class="text-lg font-medium text-gray-800 mb-3">Share This Vote</h4>
+                <div class="flex items-center bg-gray-100 p-3 rounded-lg">
+                  <input type="text" id="share-vote-link" class="flex-1 bg-transparent border-none outline-none text-gray-800" readonly>
+                  <button id="copy-share-link" class="text-green-600 hover:text-green-800 ml-2 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                      <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                    </svg>
+                  </button>
+                </div>
+                <p id="share-copy-message" class="text-sm text-green-600 hidden mt-2">Link copied to clipboard!</p>
+              </div>
+
+              <div id="voters-list" class="hidden">
+                <h4 class="text-lg font-medium text-gray-800 mb-4">Voters</h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full border-collapse">
+                    <thead>
+                      <tr class="bg-gray-100">
+                        <th class="p-3 text-left text-gray-700 border border-gray-300">Voter Name</th>
+                        <th class="p-3 text-left text-gray-700 border border-gray-300">Voted For</th>
+                        <th class="p-3 text-left text-gray-700 border border-gray-300">Time</th>
+                      </tr>
+                    </thead>
+                    <tbody id="voters-table-body">
+                      <!-- Voters will be populated here -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+              <p class="text-gray-500 text-sm">Created by VotingSystem</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Performance optimizations
+    let isInitialized = false;
+    let debounceTimer;
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCaf1l3m9gpGkP3Y-dNtTzj0JLvX7b7gnc",
+      authDomain: "votingsystem-da65c.firebaseapp.com",
+      projectId: "votingsystem-da65c",
+      storageBucket: "votingsystem-da65c.firebasestorage.app",
+      messagingSenderId: "733035293529",
+      appId: "1:733035293529:web:2668b4cc168c94e0793a48"
+    };
+
+    // Initialize Firebase only once
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.firestore();
+
+    // Debounce function for performance
+    function debounce(func, wait) {
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(debounceTimer);
+          func(...args);
+        };
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(later, wait);
+      };
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isInitialized) return;
+      isInitialized = true;
+
+      // State management
+      let currentVote = null;
+      let myVotes = {};
+      let allVotes = {};
+      let resultsChart = null;
+      let voteListeners = {};
+
+      // Scalability Protection
+      let activeRequests = 0;
+      const MAX_CONCURRENT_REQUESTS = 5;
+      let lastVoteTime = 0;
+      const VOTE_COOLDOWN_MS = 2000; // 2 seconds
+
+      // Show loading spinner
+      function showLoading() {
+        document.getElementById('loading-spinner').classList.remove('hidden');
+      }
+
+      // Hide loading spinner
+      function hideLoading() {
+        document.getElementById('loading-spinner').classList.add('hidden');
+      }
+
+      // Rate limiting for Firebase requests
+      async function makeFirebaseRequest(operation) {
+        if (activeRequests >= MAX_CONCURRENT_REQUESTS) {
+          throw new Error('Server is busy. Please try again in a moment.');
+        }
+
+        activeRequests++;
+        try {
+          return await operation();
+        } finally {
+          activeRequests--;
+        }
+      }
+
+      // Initialize data from localStorage
+      function initializeData() {
+        try {
+          const storedMyVotes = localStorage.getItem('myVotes');
+          const storedAllVotes = localStorage.getItem('allVotes');
+
+          if (storedMyVotes) {
+            myVotes = JSON.parse(storedMyVotes);
+          }
+          if (storedAllVotes) {
+            allVotes = JSON.parse(storedAllVotes);
+          }
+        } catch (e) {
+          console.error('Error loading data:', e);
+          myVotes = {};
+          allVotes = {};
+        }
+      }
+
+      // Save data to localStorage
+      function saveData() {
+        try {
+          localStorage.setItem('myVotes', JSON.stringify(myVotes));
+          localStorage.setItem('allVotes', JSON.stringify(allVotes));
+        } catch (e) {
+          console.error('Error saving data:', e);
+        }
+      }
+
+      // Generate a unique user identifier
+      function generateUserId() {
+        let userId = localStorage.getItem('userId');
+        if (!userId) {
+          userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+          localStorage.setItem('userId', userId);
+        }
+        return userId;
+      }
+
+      // Generate a unique vote identifier
+      function generateVoteId() {
+        return 'vote_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      }
+
+      // DOM elements
+      const welcomeScreen = document.getElementById('welcome-screen');
+      const createVoteForm = document.getElementById('create-vote-form');
+      const voteCreatedScreen = document.getElementById('vote-created');
+      const votingScreen = document.getElementById('voting-screen');
+      const voteSubmittedScreen = document.getElementById('vote-submitted');
+      const resultsScreen = document.getElementById('results-screen');
+
+      // Navigation functions
+      function showScreen(screen) {
+        [welcomeScreen, createVoteForm, voteCreatedScreen, votingScreen, voteSubmittedScreen, resultsScreen]
+          .forEach(el => el.classList.add('hidden'));
+        screen.classList.remove('hidden');
+
+        // Update footer text in results screen
+        if (screen === resultsScreen) {
+          const footerText = screen.querySelector('.text-gray-500');
+          if (footerText) {
+            footerText.textContent = 'Created by VotingSystem';
+          }
+        }
+      }
+
+      // Event listeners for navigation
+      document.getElementById('create-vote-btn').addEventListener('click', () => {
+        showScreen(createVoteForm);
+      });
+
+      document.getElementById('view-results-btn').addEventListener('click', () => {
+        populateVoteSelect();
+        showScreen(resultsScreen);
+      });
+
+      document.getElementById('back-to-welcome').addEventListener('click', () => {
+        showScreen(welcomeScreen);
+      });
+
+      document.getElementById('back-to-welcome-2').addEventListener('click', () => {
+        showScreen(welcomeScreen);
+      });
+
+      document.getElementById('back-to-welcome-from-results').addEventListener('click', () => {
+        showScreen(welcomeScreen);
+      });
+
+      document.getElementById('go-back-home').addEventListener('click', () => {
+        showScreen(welcomeScreen);
+      });
+
+      document.getElementById('create-first-vote').addEventListener('click', () => {
+        showScreen(createVoteForm);
+      });
+
+      document.getElementById('create-own-election').addEventListener('click', () => {
+        showScreen(welcomeScreen);
+      });
+
+      // Option management
+      document.getElementById('add-option').addEventListener('click', () => {
+        const optionsContainer = document.getElementById('options-container');
+        const optionCount = optionsContainer.children.length + 1;
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'flex items-center';
+        optionDiv.innerHTML = `
+          <input type="text" class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Option ${optionCount}">
+          <button class="ml-2 text-red-500 hover:text-red-700 remove-option hidden transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 6h18"></path>
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+            </svg>
+          </button>
+        `;
+        optionsContainer.appendChild(optionDiv);
+
+        if (optionsContainer.children.length > 2) {
+          document.querySelectorAll('.remove-option').forEach(btn => btn.classList.remove('hidden'));
+        }
+      });
+
+      // Remove option event delegation
+      document.getElementById('options-container').addEventListener('click', (e) => {
+        if (e.target.closest('.remove-option')) {
+          const optionDiv = e.target.closest('.flex.items-center');
+          if (document.getElementById('options-container').children.length > 2) {
+            optionDiv.remove();
+            if (document.getElementById('options-container').children.length <= 2) {
+              document.querySelectorAll('.remove-option').forEach(btn => btn.classList.add('hidden'));
+            }
+          }
+        }
+      });
+
+      // Create vote functionality
+      document.getElementById('create-vote').addEventListener('click', async () => {
+        const title = document.getElementById('vote-title').value.trim();
+        const description = document.getElementById('vote-description').value.trim();
+        const requireName = document.getElementById('require-name').checked;
+
+        // Get options
+        const options = [];
+        document.querySelectorAll('#options-container input').forEach(input => {
+          if (input.value.trim()) {
+            options.push({
+              text: input.value.trim(),
+              votes: 0
+            });
+          }
+        });
+
+        // Validation
+        if (!title) {
+          alert('Please enter a title for your vote');
+          return;
+        }
+
+        if (options.length < 2) {
+          alert('Please add at least 2 options');
+          return;
+        }
+
+        showLoading();
+
+        // Create vote object
+        const voteId = generateVoteId();
+        const creatorId = generateUserId();
+
+        currentVote = {
+          id: voteId,
+          title,
+          description,
+          options: options.map(opt => ({...opt, votes: 0})),
+          requireName,
+          totalVotes: 0,
+          voters: [],
+          createdAt: new Date().toISOString(),
+          ended: false,
+          creatorId: creatorId
+        };
+
+        try {
+          // Save to Firebase with rate limiting
+          await makeFirebaseRequest(() =>
+            db.collection('votes').doc(voteId).set(currentVote)
+          );
+
+          // Save to local storage
+          myVotes[voteId] = {...currentVote};
+          allVotes[voteId] = {...currentVote};
+          saveData();
+
+          // Generate shareable link
+          const voteLink = `${window.location.origin}${window.location.pathname}?vote=${voteId}`;
+          document.getElementById('vote-link').value = voteLink;
+
+          // Generate QR code
+          const qrcodeContainer = document.getElementById('qrcode');
+          qrcodeContainer.innerHTML = '';
+          new QRCode(qrcodeContainer, {
+            text: voteLink,
+            width: 200,
+            height: 200,
+            colorDark: "#3DDC84",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+          });
+
+          hideLoading();
+          showScreen(voteCreatedScreen);
+        } catch (error) {
+          hideLoading();
+          console.error('Error saving vote to Firebase:', error);
+          if (error.message.includes('Server is busy')) {
+            alert(error.message);
+          } else {
+            alert('Error creating vote. Please try again.');
+          }
+        }
+      });
+
+      // Copy link functionality
+      document.getElementById('copy-link').addEventListener('click', () => {
+        const linkInput = document.getElementById('vote-link');
+        linkInput.select();
+        document.execCommand('copy');
+
+        const copyMessage = document.getElementById('copy-message');
+        copyMessage.classList.remove('hidden');
+        setTimeout(() => copyMessage.classList.add('hidden'), 2000);
+      });
+
+      // Check if URL has vote ID and show voting screen
+      async function checkUrlForVote() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const voteId = urlParams.get('vote');
+
+        if (voteId) {
+          showLoading();
+          try {
+            const doc = await makeFirebaseRequest(() =>
+              db.collection('votes').doc(voteId).get()
+            );
+            if (doc.exists) {
+              const vote = doc.data();
+              currentVote = vote;
+              hideLoading();
+              showVotingScreen();
+            } else {
+              hideLoading();
+              alert('Vote not found. It may have been deleted.');
+            }
+          } catch (error) {
+            hideLoading();
+            console.error('Error loading vote from Firebase:', error);
+            if (error.message.includes('Server is busy')) {
+              alert(error.message);
+            } else {
+              alert('Error loading vote. Please try again.');
+            }
+          }
+        }
+      }
+
+      // Show voting screen
+      function showVotingScreen() {
+        setupVotingScreen();
+        showScreen(votingScreen);
+      }
+
+      // Set up voting screen
+      function setupVotingScreen() {
+        document.getElementById('voting-title').textContent = currentVote.title;
+        document.getElementById('voting-description').textContent = currentVote.description;
+
+        // Check if election has ended
+        const electionEndedBadge = document.getElementById('election-ended-badge');
+        const electionEndedMessage = document.getElementById('election-ended-message');
+        const submitButton = document.getElementById('submit-vote');
+
+        if (currentVote.ended) {
+          electionEndedBadge.classList.remove('hidden');
+          electionEndedMessage.classList.remove('hidden');
+          submitButton.disabled = true;
+          submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+          electionEndedBadge.classList.add('hidden');
+          electionEndedMessage.classList.add('hidden');
+          submitButton.disabled = false;
+          submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        // Check if user has already voted
+        const alreadyVotedMessage = document.getElementById('already-voted-message');
+        const userId = generateUserId();
+
+        // Reset the already voted message first
+        alreadyVotedMessage.classList.add('hidden');
+        submitButton.disabled = false;
+        submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+
+        // Then check if user has voted
+        if (currentVote.voters && currentVote.voters.some(voter => voter.userId === userId)) {
+          alreadyVotedMessage.classList.remove('hidden');
+          submitButton.disabled = true;
+          submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+
+        // Show security fields if required
+        const securityFields = document.getElementById('security-fields');
+        if (currentVote.requireName) {
+          securityFields.classList.remove('hidden');
+          document.getElementById('name-field').classList.remove('hidden');
+        } else {
+          securityFields.classList.add('hidden');
+        }
+
+        // Populate options
+        const optionsContainer = document.getElementById('voting-options');
+        optionsContainer.innerHTML = '';
+
+        currentVote.options.forEach((option, index) => {
+          const optionDiv = document.createElement('div');
+          optionDiv.className = 'flex items-center p-4 border border-gray-300 rounded-lg hover:bg-green-50 cursor-pointer option-item';
+          optionDiv.innerHTML = `
+            <input type="radio" id="option-${index}" name="vote-option" value="${index}" class="mr-3 rounded-full border-gray-300 text-green-600 focus:ring-green-500">
+            <label for="option-${index}" class="flex-1 cursor-pointer text-gray-700">${option.text}</label>
+          `;
+
+          optionDiv.addEventListener('click', () => {
+            const radio = optionDiv.querySelector('input[type="radio"]');
+            radio.checked = true;
+          });
+
+          optionsContainer.appendChild(optionDiv);
+        });
+      }
+
+      // Submit vote - IMPROVED with rate limiting
+      document.getElementById('submit-vote').addEventListener('click', async () => {
+        // Rate limiting cooldown
+        const now = Date.now();
+        if (now - lastVoteTime < VOTE_COOLDOWN_MS) {
+          alert('Please wait a moment before voting again');
+          return;
+        }
+        lastVoteTime = now;
+
+        // Check if election has ended
+        if (currentVote.ended) {
+          alert('This election has ended. Voting is no longer allowed.');
+          return;
+        }
+
+        // Check if user has already voted
+        const userId = generateUserId();
+        if (currentVote.voters && currentVote.voters.some(voter => voter.userId === userId)) {
+          alert('You have already voted in this election.');
+          return;
+        }
+
+        // Validate security requirements
+        let voterName = '';
+        if (currentVote.requireName) {
+          voterName = document.getElementById('voter-name').value.trim();
+          if (!voterName) {
+            alert('Please enter your name');
+            return;
+          }
+        }
+
+        // Get selected option
+        const selectedOption = document.querySelector('input[name="vote-option"]:checked');
+        if (!selectedOption) {
+          alert('Please select an option');
+          return;
+        }
+
+        const optionIndex = parseInt(selectedOption.value);
+
+        // Create voter data
+        const voterData = {
+          name: voterName || 'Anonymous',
+          votedFor: currentVote.options[optionIndex].text,
+          userId: userId,
+          timestamp: new Date().toISOString()
+        };
+
+        showLoading();
+
+        try {
+          // Get the current vote data first to ensure we have the latest
+          const voteDoc = await makeFirebaseRequest(() =>
+            db.collection('votes').doc(currentVote.id).get()
+          );
+          if (!voteDoc.exists) {
+            hideLoading();
+            alert('Vote not found. It may have been deleted or doesn\'t exist.');
+            return;
+          }
+
+          const currentVoteData = voteDoc.data();
+
+          // Check again if user has voted (in case they voted from another device)
+          if (currentVoteData.voters && currentVoteData.voters.some(voter => voter.userId === userId)) {
+            hideLoading();
+            alert('You have already voted in this election.');
+            return;
+          }
+
+          // Update the vote in Firebase
+          const updatedOptions = [...currentVoteData.options];
+          updatedOptions[optionIndex].votes = (updatedOptions[optionIndex].votes || 0) + 1;
+
+          const updatedVoters = [...(currentVoteData.voters || []), voterData];
+
+          await makeFirebaseRequest(() =>
+            db.collection('votes').doc(currentVote.id).update({
+              totalVotes: (currentVoteData.totalVotes || 0) + 1,
+              voters: updatedVoters,
+              options: updatedOptions
+            })
+          );
+
+          hideLoading();
+          showScreen(voteSubmittedScreen);
+
+        } catch (error) {
+          hideLoading();
+          console.error('Error submitting vote:', error);
+
+          if (error.message.includes('Server is busy')) {
+            alert(error.message);
+          } else if (error.code === 'not-found') {
+            alert('This vote has been deleted by the creator.');
+          } else if (error.code === 'permission-denied') {
+            alert('You do not have permission to vote in this election.');
+          } else {
+            alert('Error submitting vote. Please try again.');
+          }
+        }
+      });
+
+      // Populate vote select for results
+      async function populateVoteSelect() {
+        const voteSelect = document.getElementById('vote-select');
+        const noVotesMessage = document.getElementById('no-votes-message');
+        const resultsContent = document.getElementById('results-content');
+
+        // Clear existing options except the first one
+        while (voteSelect.children.length > 1) {
+          voteSelect.removeChild(voteSelect.lastChild);
+        }
+
+        const userId = generateUserId();
+
+        showLoading();
+
+        try {
+          const querySnapshot = await makeFirebaseRequest(() =>
+            db.collection('votes')
+              .where('creatorId', '==', userId)
+              .orderBy('createdAt', 'desc')
+              .get()
+          );
+
+          if (querySnapshot.empty) {
+            noVotesMessage.classList.remove('hidden');
+            resultsContent.classList.add('hidden');
+            hideLoading();
+            return;
+          }
+
+          noVotesMessage.classList.add('hidden');
+
+          // Clear previous data
+          myVotes = {};
+
+          querySnapshot.forEach((doc) => {
+            const vote = doc.data();
+            const option = document.createElement('option');
+            option.value = vote.id;
+            option.textContent = vote.title;
+            voteSelect.appendChild(option);
+
+            // Store in myVotes for quick access
+            myVotes[vote.id] = vote;
+          });
+
+          saveData();
+          hideLoading();
+
+        } catch (error) {
+          hideLoading();
+          console.error('Error loading votes from Firebase:', error);
+          if (error.message.includes('Server is busy')) {
+            alert(error.message);
+          } else if (Object.keys(myVotes).length === 0) {
+            noVotesMessage.classList.remove('hidden');
+            resultsContent.classList.add('hidden');
+          } else {
+            noVotesMessage.classList.add('hidden');
+            for (const voteId in myVotes) {
+              const vote = myVotes[voteId];
+              const option = document.createElement('option');
+              option.value = voteId;
+              option.textContent = vote.title;
+              voteSelect.appendChild(option);
+            }
+          }
+        }
+      }
+
+      // Show results when a vote is selected
+      document.getElementById('vote-select').addEventListener('change', function() {
+        const voteId = this.value;
+        const resultsContent = document.getElementById('results-content');
+        const removeVoteBtn = document.getElementById('remove-vote-btn');
+
+        if (voteId && myVotes[voteId]) {
+          showLoading();
+
+          // Remove previous listener if exists
+          if (voteListeners[voteId]) {
+            voteListeners[voteId]();
+            delete voteListeners[voteId];
+          }
+
+          // Get the latest vote data from Firebase
+          makeFirebaseRequest(() =>
+            db.collection('votes').doc(voteId).get()
+          ).then((doc) => {
+            if (doc.exists) {
+              const vote = doc.data();
+
+              // Set up real-time listener for vote updates
+              const unsubscribe = db.collection('votes').doc(voteId).onSnapshot((doc) => {
+                if (doc.exists) {
+                  const updatedVote = doc.data();
+                  updateResultsDisplay(updatedVote);
+                }
+              });
+
+              // Store the unsubscribe function
+              voteListeners[voteId] = unsubscribe;
+
+              // Initial display
+              updateResultsDisplay(vote);
+
+              // Show action buttons
+              removeVoteBtn.classList.remove('hidden');
+
+              // Set up button event handler
+              removeVoteBtn.onclick = () => removeVote(voteId);
+
+              hideLoading();
+              resultsContent.classList.remove('hidden');
+            }
+          }).catch(error => {
+            hideLoading();
+            console.error('Error loading vote from Firebase:', error);
+            if (error.message.includes('Server is busy')) {
+              alert(error.message);
+            }
+          });
+        } else {
+          resultsContent.classList.add('hidden');
+          removeVoteBtn.classList.add('hidden');
+        }
+      });
+
+      // Update results display
+      function updateResultsDisplay(vote) {
+        document.getElementById('results-title').textContent = vote.title;
+        document.getElementById('results-description').textContent = vote.description;
+
+        // Generate share link
+        const shareLink = `${window.location.origin}${window.location.pathname}?vote=${vote.id}`;
+        document.getElementById('share-vote-link').value = shareLink;
+
+        // Show total voters
+        document.getElementById('total-voters').textContent = vote.voters ? vote.voters.length : 0;
+
+        // Determine winner
+        let winner = null;
+        let maxVotes = 0;
+        let isTie = false;
+
+        vote.options.forEach(option => {
+          if (option.votes > maxVotes) {
+            maxVotes = option.votes;
+            winner = option.text;
+            isTie = false;
+          } else if (option.votes === maxVotes && maxVotes > 0) {
+            isTie = true;
+          }
+        });
+
+        // Show winner info
+        const winnerInfo = document.getElementById('winner-info');
+        if (isTie && maxVotes > 0) {
+          winnerInfo.textContent = 'Tie between multiple options';
+          winnerInfo.className = 'text-yellow-600 font-semibold';
+        } else if (winner && maxVotes > 0) {
+          winnerInfo.textContent = `Winner: ${winner} (${maxVotes} votes)`;
+          winnerInfo.className = 'text-green-600 font-semibold';
+        } else {
+          winnerInfo.textContent = 'No votes yet';
+          winnerInfo.className = 'text-gray-600 font-semibold';
+        }
+
+        // Show election status
+        const electionStatus = document.getElementById('election-status');
+        if (vote.ended) {
+          electionStatus.textContent = 'Status: Ended';
+          electionStatus.className = 'text-red-600 text-sm mt-1';
+        } else {
+          electionStatus.textContent = 'Status: Active';
+          electionStatus.className = 'text-green-600 text-sm mt-1';
+        }
+
+        // Copy share link
+        document.getElementById('copy-share-link').onclick = () => {
+          const shareInput = document.getElementById('share-vote-link');
+          shareInput.select();
+          document.execCommand('copy');
+
+          const shareMessage = document.getElementById('share-copy-message');
+          shareMessage.classList.remove('hidden');
+          setTimeout(() => shareMessage.classList.add('hidden'), 2000);
+        };
+
+        // Show voters list if there are voters
+        const votersList = document.getElementById('voters-list');
+        if (vote.voters && vote.voters.length > 0) {
+          votersList.classList.remove('hidden');
+          const votersTableBody = document.getElementById('voters-table-body');
+          votersTableBody.innerHTML = '';
+
+          vote.voters.forEach(voter => {
+            const row = document.createElement('tr');
+            const time = new Date(voter.timestamp).toLocaleString();
+            row.innerHTML = `
+              <td class="p-3 border border-gray-300">${voter.name || 'Anonymous'}</td>
+              <td class="p-3 border border-gray-300">${voter.votedFor}</td>
+              <td class="p-3 border border-gray-300 text-sm">${time}</td>
+            `;
+            votersTableBody.appendChild(row);
+          });
+        } else {
+          votersList.classList.add('hidden');
+        }
+
+        // Create chart
+        createResultsChart(vote);
+      }
+
+      // Create results chart
+      function createResultsChart(vote) {
+        const ctx = document.getElementById('results-chart').getContext('2d');
+
+        // Destroy existing chart if it exists
+        if (resultsChart) {
+          resultsChart.destroy();
+        }
+
+        const labels = vote.options.map(option => option.text);
+        const data = vote.options.map(option => option.votes || 0);
+        const backgroundColors = [
+          'rgba(61, 220, 132, 0.7)',
+          'rgba(52, 194, 117, 0.7)',
+          'rgba(43, 168, 102, 0.7)',
+          'rgba(34, 142, 87, 0.7)',
+          'rgba(25, 116, 72, 0.7)'
+        ];
+
+        resultsChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Votes',
+              data: data,
+              backgroundColor: backgroundColors,
+              borderColor: backgroundColors.map(color => color.replace('0.7', '1')),
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        });
+      }
+
+      // Remove vote functionality
+      async function removeVote(voteId) {
+        if (confirm('Are you sure you want to delete this vote? This action cannot be undone.')) {
+          showLoading();
+          try {
+            // First check if the vote exists and user is the creator
+            const voteDoc = await makeFirebaseRequest(() =>
+              db.collection('votes').doc(voteId).get()
+            );
+
+            if (!voteDoc.exists) {
+              hideLoading();
+              alert('Vote not found. It may have already been deleted.');
+              return;
+            }
+
+            const vote = voteDoc.data();
+            const userId = generateUserId();
+
+            // Verify user is the creator
+            if (vote.creatorId !== userId) {
+              hideLoading();
+              alert('You can only delete votes that you created.');
+              return;
+            }
+
+            // Delete from Firebase
+            await makeFirebaseRequest(() =>
+              db.collection('votes').doc(voteId).delete()
+            );
+
+            // Remove listener
+            if (voteListeners[voteId]) {
+              voteListeners[voteId]();
+              delete voteListeners[voteId];
+            }
+
+            // Delete from local storage
+            delete myVotes[voteId];
+            delete allVotes[voteId];
+            saveData();
+
+            // Clear results and go back to results screen
+            document.getElementById('results-content').classList.add('hidden');
+            document.getElementById('vote-select').value = '';
+            populateVoteSelect();
+
+            hideLoading();
+            alert('Vote deleted successfully!');
+
+          } catch (error) {
+            hideLoading();
+            console.error('Error deleting vote:', error);
+            console.error('Error code:', error.code);
+            console.error('Error message:', error.message);
+
+            if (error.message.includes('Server is busy')) {
+              alert(error.message);
+            } else if (error.code === 'permission-denied') {
+              alert('Permission denied. You can only delete votes that you created.');
+            } else if (error.code === 'not-found') {
+              alert('Vote not found. It may have already been deleted.');
+            } else {
+              alert('Error deleting vote. Please check your Firebase security rules.');
+            }
+          }
+        }
+      }
+
+      // Initialize the application
+      function initializeApp() {
+        initializeData();
+        checkUrlForVote();
+      }
+
+      // Initialize the app
+      initializeApp();
+    });
+  </script>
+</body>
+</html>
