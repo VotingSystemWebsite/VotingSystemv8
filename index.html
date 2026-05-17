@@ -1,40 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=VECB953RBN"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-VECB953RBN');
-  </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VECB953RBN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VECB953RBN');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>About Us | VotingSystem — Open Source Voting Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2BDE8F;
+            --primary-dark: #20B477;
+            --primary-soft: rgba(43, 222, 143, 0.12);
+            --background: #FFFFFF;
+            --foreground: #111827;
+            --muted-foreground: #4B5563;
+            --border: #E5E7EB;
+            --muted: #F9FAFB;
+            --card-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --hover-shadow: 0 25px 40px -14px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #F8FEF9 0%, #F1F9F0 100%);
+            color: var(--foreground);
+            scroll-behavior: smooth;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        
+        .slide-up {
+            animation: slideUp 0.6s ease-out backwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(32px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 500;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 6px rgba(32, 180, 119, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px -10px rgba(32, 180, 119, 0.4);
+        }
+        
+        .card-modern {
+            background: var(--background);
+            border-radius: 28px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(0px);
+        }
+        
+        .card-modern:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--hover-shadow);
+            border-color: rgba(43, 222, 143, 0.2);
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+        }
+        
+        .partner-logo-container {
+            background: white;
+            border-radius: 28px;
+            transition: all 0.25s;
+            border: 1px solid #F0F0F0;
+        }
+        
+        .partner-logo-container:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 15px 25px -12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            background: var(--primary-soft);
+            border-radius: 24px;
+            display: inline-flex;
+            padding: 14px;
+            transition: 0.2s;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #1F2B3C 0%, #2C3E50 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .badge-outline {
+            background: rgba(43, 222, 143, 0.1);
+            border-radius: 40px;
+            padding: 4px 14px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: #1C6E42;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div id="about-us-page" class="min-h-screen">
+        <!-- refined header with official logo + updated navigation links -->
+        <div class="py-5 px-6 md:px-8 border-b border-gray-100/80 bg-white/70 backdrop-blur-sm sticky top-0 z-30">
+            <div class="container mx-auto max-w-7xl flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/VotingSystem_logo.png" 
+                         alt="VotingSystem official logo" 
+                         class="h-10 w-auto object-contain drop-shadow-sm"
+                         loading="eager">
+                    <span class="text-gray-800 text-xl font-semibold tracking-tight hidden sm:inline-block">VotingSystem</span>
+                </div>
+                <div class="flex items-center gap-5 text-sm font-medium">
+                    <a href="https://votingsystem-nu.vercel.app/voting.html" class="text-gray-600 hover:text-[#2BDE8F] transition-colors">Home</a>
+                    <a href="#" class="text-gray-900 font-semibold border-b-2 border-[#2BDE8F] pb-0.5">About</a>
+                    <a href="https://github.com/SitesAndMore-hue/VotingSystemv8/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-[#2BDE8F] transition-colors">GitHub</a>
+                    <a href="https://votingsystem-nu.vercel.app/Election_Security_101_How_Votes_Are_Counted_and_Protected.html" class="text-gray-600 hover:text-[#2BDE8F] transition-colors">Privacy</a>
+                    <a href="https://votingsystem-nu.vercel.app/voting.html" class="bg-gray-900 text-white px-5 py-2 rounded-full text-sm hover:bg-gray-800 transition shadow-sm">Create Vote →</a>
+                </div>
+            </div>
+        </div>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Mission Section - refined & elevated -->
+        <section class="py-20 px-6 fade-in">
+            <div class="container mx-auto max-w-5xl text-center slide-up" style="animation-delay: 0.1s;">
+                <div class="inline-flex mb-5">
+                    <span class="badge-outline">✨ open source · community driven</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight">Voting, reimagined for <span class="text-[#2BDE8F]">everyone</span></h1>
+                <div class="card-modern p-8 md:p-10 max-w-4xl mx-auto text-left md:text-center">
+                    <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-6">
+                        VotingSystem was built to fix a fundamental problem: voting tools shouldn't be locked behind accounts, downloads, or complicated onboarding.  
+                        We provide an <strong class="font-semibold">instant, no‑registration, transparent voting engine</strong> that works for classrooms, NGOs, open-source communities, and global teams.
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-8">
+                        Our mission is to make collective decision-making frictionless. No signups, no walls — just fair, verifiable polls in seconds.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-5 mt-6">
+                        <button onclick="window.location.href='https://votingsystem-nu.vercel.app/voting.html'" class="btn-primary py-3.5 px-8 rounded-full text-base font-semibold shadow-md">
+                            ⚡ Start a free vote
+                        </button>
+                        <a href="#partners" class="py-3.5 px-7 rounded-full border border-gray-300 text-gray-700 font-medium hover:border-[#2BDE8F] hover:text-[#2BDE8F] transition">Trusted partners →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <title>Free Online Voting System – No Login Required | VotingSystem by Aren Group</title>
+        <!-- GLOBAL STATS: 70+ countries, thousands of users, open source (modern badge section) -->
+        <section class="py-8 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 slide-up" style="animation-delay: 0.15s;">
+                    <div class="stat-card p-6 flex items-center gap-5 bg-white rounded-3xl shadow-sm border border-gray-100">
+                        <div class="bg-[#2BDE8F]/10 p-3 rounded-2xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#2BDE8F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14 14 0 0 0 0 20 14 14 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-black text-gray-900">70+</h3>
+                            <p class="text-gray-500 font-medium">Countries worldwide</p>
+                        </div>
+                    </div>
+                    <div class="stat-card p-6 flex items-center gap-5 bg-white rounded-3xl shadow-sm border border-gray-100">
+                        <div class="bg-[#2BDE8F]/10 p-3 rounded-2xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#2BDE8F" stroke-width="1.7"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-black text-gray-900">Thousands</h3>
+                            <p class="text-gray-500 font-medium">Active users & organizations</p>
+                        </div>
+                    </div>
+                    <div class="stat-card p-6 flex items-center gap-5 bg-white rounded-3xl shadow-sm border border-gray-100">
+                        <div class="bg-[#2BDE8F]/10 p-3 rounded-2xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#2BDE8F" stroke-width="1.7"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-black text-gray-900">100%</h3>
+                            <p class="text-gray-500 font-medium">Open Source (MIT)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <!-- Values Section (modern + elevated) -->
+        <section class="py-20 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Built on trust & clarity</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">Every feature reflects what matters most: fairness, ease, and accessibility.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card-modern p-8 text-center slide-up" style="animation-delay: 0.05s;">
+                        <div class="feature-icon mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2BDE8F" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-5 mb-3">Radical Transparency</h3>
+                        <p class="text-gray-600 leading-relaxed">Every vote is verifiable, results are tamper-evident, and the entire logic is open to inspection.</p>
+                    </div>
+                    <div class="card-modern p-8 text-center slide-up" style="animation-delay: 0.1s;">
+                        <div class="feature-icon mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2BDE8F" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-5 mb-3">Zero‑friction access</h3>
+                        <p class="text-gray-600 leading-relaxed">No login, no app store, no learning curve — just a link and your voice matters.</p>
+                    </div>
+                    <div class="card-modern p-8 text-center slide-up" style="animation-delay: 0.15s;">
+                        <div class="feature-icon mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2BDE8F" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mt-5 mb-3">Simplicity first</h3>
+                        <p class="text-gray-600 leading-relaxed">Powerful voting doesn't mean complexity. We obsess over intuitive UI for everyone.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <meta name="google-site-verification" content="bNX1B61g3y4T9ymJ6H2qimq24khS_OwGlTKqgl3mH8Q" />
-  <meta name="description" content="VotingSystem is a free online poll and voting platform. Create polls instantly, share them, and view results in real time — no login or signup required. Perfect for schools, events, and teams.">
-  <meta name="keywords" content="free online voting, no login poll maker, anonymous voting, create poll, free poll site, voting system, Aren Nersesyan, online poll, poll without signup, instant results, share votes, quick poll, voting platform, Aren Group">
-  <meta name="author" content="Aren Nersesyan">
-  <meta name="robots" content="index, follow">
+        <!-- Educational articles (kept & polished) -->
+        <section class="py-6 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card-modern p-8 text-center slide-up" style="animation-delay: 0.05s;">
+                        <div class="feature-icon mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2BDE8F" stroke-width="1.8"><path d="M4 19h16"/><path d="M4 5h16"/><path d="M7 5v14"/><path d="M17 5v14"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mt-5 mb-3">📘 Educational library</h3>
+                        <p class="text-gray-600">We provide free, accessible articles that demystify voting systems, election methods, and poll logic — perfect for civic projects.</p>
+                    </div>
+                    <div class="card-modern p-8 text-center slide-up" style="animation-delay: 0.1s;">
+                        <div class="feature-icon mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2BDE8F" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mt-5 mb-3">Easy to understand</h3>
+                        <p class="text-gray-600">Complex topics like ranked choice or quorum explained in plain language for students & first-time voters.</p>
+                    </div>
+                    <div class="card-modern p-8 text-center slide-up" style="animation-delay: 0.15s;">
+                        <div class="feature-icon mx-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#2BDE8F" stroke-width="1.8"><path d="M12 20l9-16H3z"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mt-5 mb-3">Teacher‑friendly</h3>
+                        <p class="text-gray-600">Classroom-ready resources, real time polls, and engaging civic tech for modern education.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <meta property="og:title" content="VotingSystem – Free Online Voting Platform | No Login Required">
-  <meta property="og:description" content="Create free polls instantly and share them. No login needed, real-time results, easy and secure.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://votingsystem-nu.vercel.app/">
+        <!-- PARTNERS SECTION (premium + interactive) -->
+        <section id="partners" class="py-24 px-6 mt-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-14">
+                    <div class="inline-flex mb-3">
+                        <span class="badge-outline bg-gray-100 text-gray-700">🤝 global ecosystem</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-5">Trusted by leading institutions & communities</h2>
+                    <p class="text-gray-600 text-lg max-w-2xl mx-auto">From schools and open source collectives to tech innovators — VotingSystem empowers real-world decisions.</p>
+                </div>
 
-  <!-- ✅ Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-stretch">
+                    <!-- Santa Rosa de Lima English Secondary School -->
+                    <div class="partner-logo-container p-8 flex flex-col items-center text-center bg-white rounded-3xl shadow-md transition-all hover:shadow-xl">
+                        <div class="h-28 w-full flex items-center justify-center mb-5 p-2 bg-gray-50 rounded-2xl">
+                            <img src="https://www.srleng.edu.mo/uploads/theme/3994aa0c75b3fe7cafcde6f23d7f6592.png" 
+                                 alt="Santa Rosa de Lima English Secondary School logo" 
+                                 class="max-h-20 max-w-full object-contain filter drop-shadow-sm">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Santa Rosa de Lima<br> English Secondary School</h3>
+                        <p class="text-sm text-gray-500 mt-2">Macau · Education pioneer</p>
+                        <div class="mt-4 flex gap-2 flex-wrap justify-center">
+                            <span class="text-xs bg-green-50 text-green-700 px-3 py-1 rounded-full">student votes</span>
+                            <span class="text-xs bg-green-50 text-green-700 px-3 py-1 rounded-full">digital democracy</span>
+                        </div>
+                        <a href="https://www.srleng.edu.mo/" target="_blank" rel="noopener noreferrer" class="mt-5 text-sm font-medium text-[#2BDE8F] hover:underline inline-flex items-center gap-1">Visit website →</a>
+                    </div>
+
+                    <!-- ChatPoint -->
+                    <div class="partner-logo-container p-8 flex flex-col items-center text-center bg-white rounded-3xl shadow-md transition-all hover:shadow-xl">
+                        <div class="h-28 w-full flex items-center justify-center mb-5 p-2 bg-gray-50 rounded-2xl">
+                            <img src="https://play-lh.googleusercontent.com/ppt8-uPCP4xxbLoFYP2JWkdO46UPLQGTvjykhPn_YJUHm_IF0fX3zVbI7JLZZx2GOI0=w480-h960-rw" 
+                                 alt="ChatPoint logo" 
+                                 class="max-h-20 max-w-full object-contain rounded-xl">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">ChatPoint</h3>
+                        <p class="text-sm text-gray-500 mt-2">Collaboration & messaging platform</p>
+                        <div class="mt-4 flex gap-2 flex-wrap justify-center">
+                            <span class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full">team polling</span>
+                            <span class="text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full">real-time</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=com.chatpoint" target="_blank" rel="noopener noreferrer" class="mt-5 text-sm font-medium text-[#2BDE8F] hover:underline inline-flex items-center gap-1">Learn about ChatPoint →</a>
+                    </div>
+
+                    <!-- KDE e.V -->
+                    <div class="partner-logo-container p-8 flex flex-col items-center text-center bg-white rounded-3xl shadow-md transition-all hover:shadow-xl">
+                        <div class="h-28 w-full flex items-center justify-center mb-5 p-2 bg-gray-50 rounded-2xl">
+                            <img src="https://ev.kde.org/images/ev_large.png" 
+                                 alt="KDE e.V. logo" 
+                                 class="max-h-20 max-w-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">KDE e.V.</h3>
+                        <p class="text-sm text-gray-500 mt-2">Global free software community</p>
+                        <div class="mt-4 flex gap-2 flex-wrap justify-center">
+                            <span class="text-xs bg-purple-50 text-purple-700 px-3 py-1 rounded-full">open source voting</span>
+                            <span class="text-xs bg-purple-50 text-purple-700 px-3 py-1 rounded-full">community decisions</span>
+                        </div>
+                        <a href="https://ev.kde.org/" target="_blank" rel="noopener noreferrer" class="mt-5 text-sm font-medium text-[#2BDE8F] hover:underline inline-flex items-center gap-1">Discover KDE e.V →</a>
+                    </div>
+                </div>
+
+                <div class="mt-20 text-center bg-white/60 backdrop-blur-sm rounded-2xl p-8 max-w-3xl mx-auto border border-gray-100 shadow-sm">
+                    <p class="text-gray-700 text-lg font-medium">🌍 Join a global movement — from classrooms to open source foundations.</p>
+                    <p class="text-gray-500 mt-2">Adopted in 70+ countries, trusted by thousands daily, and 100% transparent. <strong class="text-gray-800">VotingSystem is open source</strong> — fork it, audit it, improve it.</p>
+                    <div class="mt-6 flex justify-center gap-3 flex-wrap">
+                        <span class="px-4 py-2 bg-gray-900 text-white rounded-full text-sm">🐙 GitHub / Open Core</span>
+                        <span class="px-4 py-2 border border-gray-300 rounded-full text-sm">📊 70+ countries</span>
+                        <span class="px-4 py-2 border border-gray-300 rounded-full text-sm">❤️ Made for communities</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- sleek footer with open source mention and updated navigation links (no Documentation) -->
+        <footer class="bg-gray-900 text-gray-300 py-14 px-6 mt-6">
+            <div class="container mx-auto max-w-6xl text-center">
+                <div class="flex justify-center mb-5">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/VotingSystem_logo.png" alt="VotingSystem logo" class="h-8 opacity-90">
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 text-sm mb-6">
+                    <a href="https://votingsystem-nu.vercel.app/voting.html" class="hover:text-white transition">Home</a>
+                    <a href="#" class="hover:text-white transition">About</a>
+                    <a href="https://github.com/SitesAndMore-hue/VotingSystemv8/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">GitHub</a>
+                    <a href="https://votingsystem-nu.vercel.app/Election_Security_101_How_Votes_Are_Counted_and_Protected.html" class="hover:text-white transition">Privacy</a>
+                </div>
+                <p class="text-gray-400 text-sm max-w-xl mx-auto">
+                    VotingSystem — modern, secure, no‑signup polling. Empowering democracies big and small.<br>
+                    Released under MIT License · Transparency by design.
+                </p>
+                <p class="text-gray-500 text-xs mt-6">
+                    &copy; 2025 Created by Aren Group & the open source community.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // refined intersection observer for slide-up animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.slide-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -20px 0px' });
+            
+            animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+            
+            // smooth anchor for partners link
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === "#" || targetId === "") return;
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>    "@type": "WebApplication",
     "name": "VotingSystem",
     "url": "https://votingsystem-nu.vercel.app/",
     "description": "Free online poll and voting system with no login required. Create and share polls instantly with real-time results.",
